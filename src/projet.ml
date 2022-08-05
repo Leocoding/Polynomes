@@ -78,7 +78,7 @@ let diff_poly poly1 poly2 =
 
 (* SECTION KARATSUBA *)
 
-(* Multiplie deux polyn�mes selon l'algorithme de Karatsuba revisit�*)
+(* Multiplie deux polynomes selon l'algorithme de Karatsuba revisité*)
 let rec mult_poly_alpha poly1 poly2 a =
   if (degre poly1 = 0) || (degre poly2 = 0)
   then (multNaive poly1 poly2)
@@ -119,7 +119,7 @@ let find_cut poly1 poly2 =
 
 (* SECTION TOOM 3 *)
 
-(* Multiplie deux polyn�mes selon l'algorithme de Toom-3*)
+(* Multiplie deux polynomes selon l'algorithme de Toom-3*)
 let toom3 polyA polyB alpha =	
     let rec aux polyA polyB = 
 			let n = (find_cut polyA polyB) in
@@ -180,7 +180,7 @@ let create_ten_poly_from_list l =
     | h::t -> aux t ((create_ten_poly h)::l2)
   in aux l [];;
 
-(* Cr�er une liste de n nombres de 0 à 10 puis de 10 à d puis créer 10 polynomes à partir de cette liste*)
+(* Créer une liste de n nombres de 0 à 10 puis de 10 à d puis créer 10 polynomes à partir de cette liste*)
 let create_all_poly n d =
   let l = create_random_list n d in
   create_ten_poly_from_list l;;
@@ -191,7 +191,7 @@ let time f =
   let res = f () in
   (Sys.time() -. t);;
 
-(* Retourne deux elements al�atoirement choisis dans la liste l *)
+(* Retourne deux elements aléatoirement choisis dans la liste l *)
 let return_pair l =
   let rand1 = (Random.int 9) and  rand2 = (Random.int 9) in 
   let rec aux l = match l with 
@@ -200,7 +200,7 @@ let return_pair l =
   in
   aux l;;
 
-(* Retourne une list de paires de polynomes tir�s au hasard dans une liste de liste de polynomes *)
+(* Retourne une list de paires de polynomes tirés au hasard dans une liste de liste de polynomes *)
 let pairs_from_list_poly listPoly = 
   let rec aux listPoly listPairs =
     match listPoly with
@@ -254,11 +254,11 @@ let eval_naive n d =
 	
 (* Retourne la moyenne des temps d'execution pour la multiplication naive*)
 let mean_naive = mean_from_list_sum (eval_naive 20 5000);;
-(* Retourne la moyenne des temps d'execution pour l'algorithme de Karatsuba revisit�*)
+(* Retourne la moyenne des temps d'execution pour l'algorithme de Karatsuba revisité*)
 let mean_karatsuba = mean_from_list_sum (eval_karatsuba 20 5000 5.);;
 (* Retourne la moyenne des temps d'execution pour l'algorithme de Toom3*)
 let mean_toom3 = mean_from_list_sum (eval_toom3 20 5000 5.);;
 
 (* !!!  EXEMPLES  !!! *)
 
-  (* Vous pouve tester en modifiant les valeurs:  20 (nombre de polynome à tiré au sort), 5000 (degré maximum), 5. (alpha arbitraire). *)
+  (* Vous pouvez tester en modifiant les valeurs:  20 (nombre de polynome à tiré au sort), 5000 (degré maximum), 5. (alpha arbitraire). *)
